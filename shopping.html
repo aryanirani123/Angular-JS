@@ -1,0 +1,45 @@
+<!-- This is a shopping app made using Angular JS.-->
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+</head>
+<body ng-app="myModule" ng-controller="myController">
+    <h1>Laptop Shopping :)</h1>
+
+    <ul  ng-repeat="t in products">
+        <img width="100" height="100" ng-src="{{t.image}}">
+        <input type="text" ng-model="t.quantity">
+    </ul>
+
+
+    <h2>Total price is : {{total()}}</h2>
+
+
+<script>
+
+    let app = angular.module("myModule",[]).controller("myController", function($scope){
+
+        $scope.products = [
+            {image: 'laptop1.jpeg',price:10000,quantity:0},
+            {image: 'laptop2.jpeg',price:20000,quantity:0},
+            {image: 'laptop3.jpeg',price:30000,quantity:0},
+            {image: 'laptop4.jpeg',price:50000,quantity:0},
+        
+        ];
+        $scope.total = () => {
+
+            let total = 0
+            angular.forEach($scope.products,s => {
+                total += s.price*s.quantity 
+            });
+            return total
+        } 
+    });
+</script>
+</body>
+</html>
